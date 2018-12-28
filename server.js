@@ -1,24 +1,28 @@
 const express = require('express');
+// add handlebars
+const hbs = require('hbs');
 
 const app = express();
-
+// set handlebars as view engine
+app.set('view engine', 'hbs');
 app.use(express.static(__dirname + '/public'));
 
-// root route, responds with json
+// root route, renders home view
 app.get('/', (req, res) => {
-  // res.send('<h1>Hello Express!</h1>');
-  res.send({
-    name: 'Andrew',
-    likes: [
-      'Biking',
-      'Cities'
-    ]
-  })
+  res.render('home.hbs', {
+    pageTitle: 'Home Page',
+    currentYear: new Date().getFullYear(),
+    welcomeMessage: 'Welcome, traveler.'
+  });
 });
 
 // new route, /about
 app.get('/about', (req, res) => {
-  res.send('About Page');
+  // render about view
+  res.render('about.hbs', {
+    pageTitle: 'About Page',
+    currentYear: new Date().getFullYear()
+  });
 });
 
 // route /bad
