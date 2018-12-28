@@ -5,11 +5,12 @@
     <title>Home</title>
   </head>
   <body>
-    <h1>{{pageTitle}}</h1>
+{{!-- Adding header partial  --}}
+    {{> header}}
+    
     <p>{{welcomeMessage}}</p>
 
-    <footer>
-      <p>Copyright {{currentYear}}</p>
-    </footer>
+{{!-- Adding footer partial  --}}
+    {{> footer}}
   </body>
 </html>

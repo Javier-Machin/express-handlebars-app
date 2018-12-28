@@ -3,6 +3,8 @@ const express = require('express');
 const hbs = require('hbs');
 
 const app = express();
+
+hbs.registerPartials(__dirname + '/views/partials')
 // set handlebars as view engine
 app.set('view engine', 'hbs');
 app.use(express.static(__dirname + '/public'));
