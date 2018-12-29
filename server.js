@@ -51,7 +51,6 @@ hbs.registerHelper('screamIt', (text) => {
 app.get('/', (req, res) => {
   res.render('home.hbs', {
     pageTitle: 'Home Page',
-    currentYear: new Date().getFullYear(),
     welcomeMessage: 'Welcome, traveler.'
   });
 });
@@ -61,8 +60,14 @@ app.get('/about', (req, res) => {
   // render about view
   res.render('about.hbs', {
     pageTitle: 'About Page',
-    currentYear: new Date().getFullYear()
   });
+});
+
+// route /projects
+app.get('/projects', (req, res) => {
+  res.render('projects.hbs', {
+    pageTitle: 'Projects Page'
+  }); 
 });
 
 // route /bad
