@@ -1,6 +1,8 @@
 const express = require('express');
 // add handlebars
 const hbs = require('hbs');
+// add fs
+const fs = require('fs');
 
 const app = express();
 
@@ -8,6 +10,29 @@ const app = express();
 hbs.registerPartials(__dirname + '/views/partials')
 // set handlebars as view engine
 app.set('view engine', 'hbs');
+
+
+app.use((req, res, next) => {
+  const now = new Date().toString();
+  const log = `${now}: ${req.method} ${req.url}`;
+  
+  console.log(log);
+  fs.appendFile('server.log', log + '\n', (error) => {
+    if (error) {
+      console.log('Unable to append to server.log.');
+    }
+  });
+
+  // If we don't call next() the app will hang here.
+  next();
+});
+
+// maintenance mode
+// app.use((req, res, next) => {
+//   res.render('maintenance');
+// })
+
+// add express static middleware
 app.use(express.static(__dirname + '/public'));
 
 
